@@ -7,7 +7,7 @@ class BDD {
             // Connexion à la base de donnees
             $pdo = new PDO('mysql:host=localhost;dbname=banque', 'root', '');  
             // Affichage des erreurs
-            echo 'Connexion réussie';
+            // echo 'Connexion réussie';
             // Retourne l'objet PDO
             return $pdo;
         } catch (PDOException $e) {
