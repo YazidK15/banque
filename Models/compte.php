@@ -26,3 +26,14 @@ function getComptesByClient ($idClient) {
     $request-> execute([$idClient]);
     return $request->fetchAll(PDO::FETCH_ASSOC);
 }
+
+function getCompteByID($id){
+    $bdd = new Bdd();
+    $conn = $bdd->connect();
+    $request = $conn->prepare ('SELECT comptes.ID, NumeroCompte, Solde, Nom, Prenom, Mail, Telephone 
+                                FROM comptes 
+                                INNER JOIN clients on clients.ID = FK_CLIENT
+                                WHERE comptes.ID =?');
+    $request-> execute([$id]);
+    return $request->fetch(PDO::FETCH_ASSOC);
+}

@@ -7,8 +7,8 @@
     <label for="client">Client</label>
     <select name="client" id="client">
         <?php 
-            foreach ($client as $client) {
-                echo "<option value='" . $client["ID"] . "'>", 
+            foreach ($clients as $client) {
+                echo "<option value='" . $client["ID"] . "'>";
                 echo $client["Nom"] . " " . $client ["Prenom"];
                 echo "</option>";
             }
