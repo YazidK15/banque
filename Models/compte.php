@@ -12,6 +12,17 @@ function fetchComptes(){
     return $request->fetchAll(PDO::FETCH_ASSOC);
 }
 
-//Fiare le models
-// Faire le controller
-// Faire la views
+function insertComptes ($NumeroCompte, $Solde, $FK_CLIENT){
+    $bdd = new Bdd();
+    $conn = $bdd->connect();
+    $request = $conn->prepare ('INSERT INTO comptes (NumeroCompte, Solde, FK_CLIENT) VALUES (?,?,?);');
+    $request-> execute([$NumeroCompte, $Solde, $FK_CLIENT]);
+}
+
+function getComptesByClient ($idClient) {
+    $bdd = new Bdd();
+    $conn = $bdd->connect();
+    $request = $conn->prepare ('SELECT ID, NumeroCompte, Solde FROM comptes WHERE FK_CLIENT =?');
+    $request-> execute([$idClient]);
+    return $request->fetchAll(PDO::FETCH_ASSOC);
+}

@@ -1,3 +1,4 @@
+<button onclick="redirectToCreateAccount()">Ajouter un compte</button>
 <table>
     <thead>
         <th>ID</th>
@@ -17,5 +18,11 @@
             }
         ?>
     </tbody>
-
 </table>
+
+<script type="text/javascript">
+    function redirectToCreateCompte() {
+        // ?action=create fait en sorte de passer une valeur par la méthode GET
+        window.location.replace("../Controllers/CompteController.php?action=create");
+    }
+</script>
