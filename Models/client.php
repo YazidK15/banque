@@ -23,10 +23,25 @@ function insertClient ($nom, $prenom, $mail, $telephone){
     $request-> execute([$nom, $prenom, $mail, $telephone]);
 }
 
+// Permet d'aller chercher les infos du client pour préremplir avec la variable $client les imputs dans edit.php
 function getClientById ($id){
     $bdd = new Bdd();
     $conn = $bdd->connect();
     $request = $conn->prepare ('SELECT ID, Nom, Prenom, Mail, Telephone FROM clients WHERE ID =?');
     $request-> execute([$id]);
     return $request->fetch(PDO::FETCH_ASSOC);
+}
+
+function updateClient ($id, $nom, $prenom, $mail, $telephone){
+    $bdd= new Bdd();
+    $conn= $bdd->connect();
+    $request= $conn->prepare('UPDATE clients SET Nom = ?, Prenom = ?, Mail = ?, telephone = ? WHERE ID = ?');
+    $request->execute([$nom, $prenom, $mail, $telephone, $id]);
+}
+
+function deleteClient ($id){
+    $bdd= new Bdd();
+    $conn= $bdd->connect();
+    $request= $conn->prepare('DELETE FROM clients WHERE ID =?');
+    $request->execute([$id]);
 }

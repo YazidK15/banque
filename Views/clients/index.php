@@ -18,7 +18,9 @@
                     echo "<td>".$client["Prenom"]."</td>";
                     echo "<td>".$client["Mail"]."</td>";
                     echo "<td>".$client["Telephone"]."</td>";
-                    echo "<td> <button onclick='redirectToDetailsClient(". $client['ID'] .")'> Voir Client </button> </td>";
+                    echo "<td> <button onclick='redirectToDetailsClient(". $client['ID'] .")'> Détails </button> </td>";
+                    echo "<td> <button onclick='redirectToEditClient(". $client['ID'] .")'> Modifier </button> </td>";
+                    echo "<td> <button onclick='redirectToDeleteClient(". $client['ID'] .")'>Supprimer </button> </td>";
                 echo "</tr>";
             }
         ?>
@@ -33,5 +35,13 @@
 
     function redirectToDetailsClient(clientId){
         window.location.replace('../Controllers/ClientController.php?action=details&id=' +clientId)
+    }
+
+    function redirectToEditClient(clientId){
+        window.location.replace('../Controllers/ClientController.php?action=edit&id=' +clientId)
+    }
+
+    function redirectToDeleteClient(clientId){
+        window.location.replace('../Controllers/ClientController.php?action=delete&id=' +clientId)
     }
 </script>

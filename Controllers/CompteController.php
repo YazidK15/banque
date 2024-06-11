@@ -8,14 +8,14 @@ if (!isset ($_GET['action'])) {
 
     //Faire appelle à notre fonction fetchComptes()
     $comptes = fetchComptes();
-
-    //Faire l'include de notre vue ../Views/comptes/index.php
     include '../Views/comptes/index.php';
+
 } else {
     if ($_GET['action'] == 'create') {
         $clients = fetchClients();
         include '../Views/comptes/create.php';
     }
+
     if ($_GET["action"] == "insert") {
         var_dump($_POST);
         $numeroCompte = $_POST["numeroCompte"];
@@ -25,6 +25,7 @@ if (!isset ($_GET['action'])) {
         header("Location: CompteController.php");
 
     }
+    
     if ($_GET["action"] == 'details'){
         $id = $_GET["id"];
         $compte = getCompteByID($id); 

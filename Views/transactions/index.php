@@ -1,26 +1,30 @@
-<h1>Formulaire de virement</h1>
-<form action="../Controllers/TransactionsController.php?action=insert" method="post">
-    <label for="crediteur">Compte créditeur</label>
-    <select name="crediteur" id="crediteur">
-        <?php 
-            foreach ($comptes as $compte) {
-                echo "<option value='". $compte["ID"]. "'>";
-                echo $compte["NumeroCompte"];
-                echo "</option>";
-            }
-       ?>
-    </select>
-    <label for="montant">Montant</label>
-    <input type="number" name="montant" id="montant" placeholder="Renseignez le montant" required>
-    <label for="beneficiaire">Compte bénéficiaire</label>
-    <select name="beneficiaire" id="beneficiaire">
-        <?php 
-            foreach ($comptes as $compte) {
-                echo "<option value='" . $compte["ID"] . "'>";
-                echo $compte["NumeroCompte"];
-                echo "</option>";
+<button onclick="redirectToCreateTransaction()">Faire une transaction</button>
+<table>
+    <thead>
+        <th>ID</th>
+        <th>Date</th>
+        <th>Compte débiteur</th>
+        <th>Compte bénéficiaire</th>
+        <th>Montant</th>
+    </thead>
+    <tbody>
+        <?php
+            foreach ($transactions as $transaction) {
+                echo "<tr>";
+                    echo "<td>".$transaction["ID"]."</td>";
+                    echo "<td>".$transaction["CompteDebiteur"]."</td>";
+                    echo "<td>".$transaction["CompteBeneficiaire"]."</td>";
+                    echo "<td>".$transaction["Montant"]."</td>";
+                    echo "<td>".$transaction["Date"]."</td>";
+                echo "</tr>";
             }
         ?>
-    </select>
-    <input type="submit" value="Envoyer">
-</form>
+    </tbody>
+</table>
+
+<script type="text/javascript">
+    function redirectToCreateTransaction() {
+        window.location.replace("../Controllers/TransactionsController.php?action=create");
+    }
+
+</script>
